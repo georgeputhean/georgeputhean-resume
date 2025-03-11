@@ -34,7 +34,10 @@ const Awards = () => {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            sectionRef.current?.classList.add("animate-fade-in-up");
+            if (sectionRef.current) {
+              sectionRef.current.classList.add("animate-fade-in-up");
+              sectionRef.current.classList.remove("opacity-0");
+            }
             observer.unobserve(entry.target);
           }
         });
@@ -60,14 +63,14 @@ const Awards = () => {
           title="Awards & Honors" 
           subtitle="Recognition of excellence and outstanding achievements"
           centered
-          className="opacity-0 animate-fade-in-up"
+          className="animate-fade-in-up"
         />
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12">
           {awards.map((award, index) => (
             <div 
               key={index} 
-              className="glass-panel p-6 flex gap-4 hover-lift opacity-0 animate-fade-in-up"
+              className="glass-panel p-6 flex gap-4 hover-lift animate-fade-in-up"
               style={{ animationDelay: `${index * 0.2}s` }}
             >
               <div className="flex-shrink-0 w-12 h-12 flex items-center justify-center rounded-full bg-portfolio-purple bg-opacity-20">

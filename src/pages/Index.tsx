@@ -18,6 +18,9 @@ const Index = () => {
     // Apply staggered animations to elements
     staggerAnimation('.stagger-animation', 0.15);
     
+    // Add a console.log to help with debugging
+    console.log("Animations initialized on Index page");
+    
     return () => {
       // Clean up observers when component unmounts
       if (fadeObserver) {

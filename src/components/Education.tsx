@@ -34,7 +34,10 @@ const Education = () => {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            sectionRef.current?.classList.add("animate-fade-in-up");
+            if (sectionRef.current) {
+              sectionRef.current.classList.add("animate-fade-in-up");
+              sectionRef.current.classList.remove("opacity-0");
+            }
             observer.unobserve(entry.target);
           }
         });
@@ -60,7 +63,7 @@ const Education = () => {
           title="Education" 
           subtitle="My academic background and learning journey"
           centered
-          className="opacity-0 animate-fade-in-up"
+          className="animate-fade-in-up"
         />
         
         <div className="relative mt-16">

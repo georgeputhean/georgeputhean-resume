@@ -35,9 +35,9 @@ const ProjectCard = ({ project }: { project: ProjectProps }) => {
         {project.description}
       </p>
       <div className="flex flex-wrap gap-2 mb-4">
-        {project.technologies.map((tech) => (
+        {project.technologies.map((tech, index) => (
           <span
-            key={tech}
+            key={`${tech}-${index}`}
             className="text-xs px-2 py-1 rounded-full bg-portfolio-surface-light text-portfolio-text/70"
           >
             {tech}
@@ -74,7 +74,10 @@ const Projects = () => {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            sectionRef.current?.classList.add("animate-fade-in-up");
+            if (sectionRef.current) {
+              sectionRef.current.classList.add("animate-fade-in-up");
+              sectionRef.current.classList.remove("opacity-0");
+            }
             observer.unobserve(entry.target);
           }
         });
@@ -100,12 +103,12 @@ const Projects = () => {
           title="Projects" 
           subtitle="Showcasing my technical skills through real-world applications"
           centered
-          className="opacity-0 animate-fade-in-up"
+          className="animate-fade-in-up"
         />
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12">
           {projects.map((project, index) => (
-            <div key={index} className="opacity-0 animate-fade-in-up" style={{ animationDelay: `${index * 0.2}s` }}>
+            <div key={index} className="animate-fade-in-up" style={{ animationDelay: `${index * 0.2}s` }}>
               <ProjectCard project={project} />
             </div>
           ))}

@@ -16,7 +16,7 @@ const skillSections: SkillSectionProps[] = [
       "Snowflake DB",
       "Databricks",
       "NoSQL",
-      "Big Query",
+      "Big Query (SQL)",
       "HQL",
       "MongoDB",
       "ElasticDB",
@@ -25,12 +25,11 @@ const skillSections: SkillSectionProps[] = [
       "Klipfolio",
       "Sisense",
       "Qlikview",
-      "looker",
+      "Looker",
       "Microsoft Excel",
       "Macros",
       "VBA",
       "SAS",
-      "Big Query",
       "Teradata",
       "HTML"
     ]
@@ -122,9 +121,9 @@ const SkillGroup = ({ title, skills }: SkillSectionProps) => {
     <div className="glass-panel p-6 h-full hover-lift">
       <h3 className="text-xl font-bold mb-4">{title}</h3>
       <div className="flex flex-wrap gap-2">
-        {skills.map((skill) => (
+        {skills.map((skill, index) => (
           <span
-            key={skill}
+            key={`${skill}-${index}`}
             className="text-sm px-3 py-1 rounded-full bg-portfolio-surface-light text-portfolio-text/80 hover:bg-portfolio-purple/20 hover:text-white transition-colors duration-200"
           >
             {skill}
@@ -143,7 +142,11 @@ const Skills = () => {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            sectionRef.current?.classList.add("animate-fade-in-up");
+            // Add the animation class but don't remove existing classes
+            if (sectionRef.current) {
+              sectionRef.current.classList.add("animate-fade-in-up");
+              sectionRef.current.classList.remove("opacity-0");
+            }
             observer.unobserve(entry.target);
           }
         });
@@ -169,12 +172,12 @@ const Skills = () => {
           title="Skills" 
           subtitle="Technical proficiencies and expertise"
           centered
-          className="opacity-0 animate-fade-in-up"
+          className="animate-fade-in-up"
         />
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12">
           {skillSections.map((section, index) => (
-            <div key={index} className="opacity-0 animate-fade-in-up" style={{ animationDelay: `${index * 0.2}s` }}>
+            <div key={index} className="animate-fade-in-up" style={{ animationDelay: `${index * 0.2}s` }}>
               <SkillGroup title={section.title} skills={section.skills} />
             </div>
           ))}

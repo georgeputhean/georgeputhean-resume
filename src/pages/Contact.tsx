@@ -5,17 +5,23 @@ import Footer from "@/components/Footer";
 import SectionHeading from "@/components/SectionHeading";
 import ContactForm from "@/components/ContactForm";
 import { Mail, MapPin, Phone, Linkedin, Github } from "lucide-react";
+import { observeElements } from "@/utils/animations";
 
 const Contact = () => {
   const pageRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Animation for the contact page
-    const elements = document.querySelectorAll('.animate-on-mount');
-    elements.forEach((element, index) => {
-      element.classList.add('animate-fade-in-up');
-      (element as HTMLElement).style.animationDelay = `${index * 0.15}s`;
-    });
+    // Use the observeElements utility for animation instead of manually adding classes
+    const fadeObserver = observeElements('.animate-on-mount');
+    
+    // Add a console.log to help with debugging
+    console.log("Contact page animations initialized");
+    
+    return () => {
+      if (fadeObserver) {
+        fadeObserver.disconnect();
+      }
+    };
   }, []);
 
   return (
@@ -28,7 +34,7 @@ const Contact = () => {
           <div className="blur-circle w-96 h-96 bg-portfolio-purple/20 -top-20 -left-40"></div>
           <div className="blur-circle w-64 h-64 bg-portfolio-blue/20 bottom-40 right-10"></div>
           
-          <div className="animate-on-mount opacity-0">
+          <div className="animate-on-mount">
             <SectionHeading
               title="Contact Me"
               subtitle="Get in touch for opportunities, collaborations, or just to say hello"
@@ -37,7 +43,7 @@ const Contact = () => {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">
-            <div className="animate-on-mount opacity-0">
+            <div className="animate-on-mount">
               <div className="glass-panel p-8 h-full">
                 <h3 className="text-2xl font-bold mb-6">Let's Connect</h3>
                 <p className="text-muted-foreground mb-8">
@@ -126,7 +132,7 @@ const Contact = () => {
               </div>
             </div>
             
-            <div className="animate-on-mount opacity-0">
+            <div className="animate-on-mount">
               <div className="glass-panel p-8 h-full">
                 <ContactForm />
               </div>

@@ -14,9 +14,15 @@ export const observeElements = (selector: string, options = {}) => {
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        // Make sure we're removing the opacity-0 class
+        // Add the animation class and ensure opacity is set to 1 after animation
         entry.target.classList.add('animate-fade-in-up');
         entry.target.classList.remove('opacity-0');
+        
+        // Ensure the element remains visible after animation completes
+        entry.target.addEventListener('animationend', () => {
+          entry.target.style.opacity = '1';
+        }, { once: true });
+        
         observer.unobserve(entry.target);
       }
     });
@@ -40,7 +46,7 @@ export const staggerAnimation = (selector: string, delay = 0.1, options = {}) =>
     
     // Ensure elements remain visible after animation
     element.addEventListener('animationend', () => {
-      element.classList.remove('opacity-0');
+      (element as HTMLElement).style.opacity = '1';
     }, { once: true });
   });
 };

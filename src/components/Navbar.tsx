@@ -35,6 +35,8 @@ const Navbar = () => {
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
   const closeMenu = () => setIsMenuOpen(false);
 
+  const resumeUrl = "https://docs.google.com/document/d/1t3Chpj9q_DKEGHPTbL62BEXBH3KgcuDxi_7d9GoSF7I/edit?usp=sharing";
+
   return (
     <header
       className={cn(
@@ -81,10 +83,17 @@ const Navbar = () => {
             >
               <Linkedin size={20} />
             </a>
-            <Button size="sm" className="ml-2 bg-portfolio-purple hover:bg-portfolio-purple/90">
-              <Download size={16} className="mr-2" />
-              Resume
-            </Button>
+            <a 
+              href={resumeUrl}
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="ml-2"
+            >
+              <Button size="sm" className="bg-portfolio-purple hover:bg-portfolio-purple/90">
+                <Download size={16} className="mr-2" />
+                Resume
+              </Button>
+            </a>
           </div>
 
           {/* Mobile Menu Button */}
@@ -143,10 +152,16 @@ const Navbar = () => {
               <Linkedin size={24} />
             </a>
           </div>
-          <Button className="mt-4 bg-portfolio-purple hover:bg-portfolio-purple/90">
-            <Download size={16} className="mr-2" />
-            Download Resume
-          </Button>
+          <a 
+            href={resumeUrl}
+            target="_blank" 
+            rel="noopener noreferrer"
+          >
+            <Button className="mt-4 bg-portfolio-purple hover:bg-portfolio-purple/90">
+              <Download size={16} className="mr-2" />
+              Download Resume
+            </Button>
+          </a>
         </nav>
       </div>
     </header>

@@ -20,7 +20,9 @@ export const observeElements = (selector: string, options = {}) => {
         
         // Ensure the element remains visible after animation completes
         entry.target.addEventListener('animationend', () => {
-          entry.target.style.opacity = '1';
+          // Cast to HTMLElement to access style property
+          const htmlElement = entry.target as HTMLElement;
+          htmlElement.style.opacity = '1';
         }, { once: true });
         
         observer.unobserve(entry.target);
@@ -42,11 +44,15 @@ export const observeElements = (selector: string, options = {}) => {
 export const staggerAnimation = (selector: string, delay = 0.1, options = {}) => {
   const elements = document.querySelectorAll(selector);
   elements.forEach((element, index) => {
-    (element as HTMLElement).style.animationDelay = `${index * delay}s`;
+    // Cast to HTMLElement to access style property
+    const htmlElement = element as HTMLElement;
+    htmlElement.style.animationDelay = `${index * delay}s`;
     
     // Ensure elements remain visible after animation
     element.addEventListener('animationend', () => {
-      (element as HTMLElement).style.opacity = '1';
+      // Cast to HTMLElement to access style property
+      const htmlElement = element as HTMLElement;
+      htmlElement.style.opacity = '1';
     }, { once: true });
   });
 };

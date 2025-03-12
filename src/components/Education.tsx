@@ -2,6 +2,7 @@
 import { useEffect, useRef } from "react";
 import SectionHeading from "./SectionHeading";
 import TimelineItem from "./TimelineItem";
+import { observeElements } from "@/utils/animations";
 
 const educations = [
   {
@@ -30,28 +31,11 @@ const Education = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            if (sectionRef.current) {
-              sectionRef.current.classList.add("animate-fade-in-up");
-              sectionRef.current.classList.remove("opacity-0");
-            }
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
+    const observer = observeElements('.animate-on-mount');
+    
     return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
+      if (observer) {
+        observer.disconnect();
       }
     };
   }, []);
@@ -63,7 +47,7 @@ const Education = () => {
           title="Education" 
           subtitle="My academic background and learning journey"
           centered
-          className="animate-fade-in-up"
+          className="animate-on-mount"
         />
         
         <div className="relative mt-16">

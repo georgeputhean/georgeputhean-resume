@@ -24,16 +24,45 @@ const ContactForm = () => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate form submission - in a real app, you'd send to a backend
-    setTimeout(() => {
-      toast({
-        title: "Message sent successfully!",
-        description: "Thank you for reaching out. I'll get back to you soon.",
+    try {
+      // Send email using EmailJS
+      const response = await fetch("https://api.emailjs.com/api/v1.0/email/send", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          service_id: "service_s8pz9vj",
+          template_id: "template_1u4v2wn",
+          user_id: "Z3KR7x2jXJXTYxT1s",
+          template_params: {
+            from_name: formData.name,
+            reply_to: formData.email,
+            message: formData.message,
+            to_email: "georgeputhean@yahoo.com",
+          },
+        }),
       });
       
-      setFormData({ name: "", email: "", message: "" });
+      if (response.ok) {
+        toast({
+          title: "Message sent successfully!",
+          description: "Thank you for reaching out. I'll get back to you soon.",
+        });
+        setFormData({ name: "", email: "", message: "" });
+      } else {
+        throw new Error("Failed to send message");
+      }
+    } catch (error) {
+      console.error("Error sending email:", error);
+      toast({
+        title: "Failed to send message",
+        description: "There was an error sending your message. Please try again later.",
+        variant: "destructive",
+      });
+    } finally {
       setIsSubmitting(false);
-    }, 1500);
+    }
   };
 
   return (

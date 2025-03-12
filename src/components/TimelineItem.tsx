@@ -50,12 +50,9 @@ const TimelineItem = ({
           )}
         </div>
         
-        {/* Timeline dot with period tooltip */}
+        {/* Only show timeline dot in the center (remove right-side dots) */}
         <div
-          className={cn(
-            "absolute top-4 md:top-6 w-5 h-5 rounded-full bg-portfolio-purple z-10 flex items-center justify-center",
-            isLeft ? "right-0 md:left-auto md:right-[-10px]" : "left-4 md:left-1/2 md:-translate-x-1/2"
-          )}
+          className="absolute top-6 left-1/2 -translate-x-1/2 w-5 h-5 rounded-full bg-portfolio-purple z-10 flex items-center justify-center hidden md:flex"
           title={period}
         >
           <div className="w-3 h-3 rounded-full bg-white"></div>

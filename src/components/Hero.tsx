@@ -47,8 +47,8 @@ const Hero = () => {
             </h1>
             
             <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-2xl">
-              A data analyst and business intelligence specialist with expertise in database management, 
-              visualization, and deriving actionable insights from complex datasets.
+              A versatile product analyst with experience in data analytics, business intelligence, 
+              and deriving actionable insights to drive product development and business growth.
             </p>
             
             <div className="flex flex-wrap gap-4">

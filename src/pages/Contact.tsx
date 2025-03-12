@@ -47,7 +47,7 @@ const Contact = () => {
               <div className="glass-panel p-8 h-full">
                 <h3 className="text-2xl font-bold mb-6">Let's Connect</h3>
                 <p className="text-muted-foreground mb-8">
-                  Whether you're looking for a data analyst, want to discuss a potential project, 
+                  Whether you're looking for a product analyst, want to discuss a potential project, 
                   or just want to connect, I'd love to hear from you. Fill out the form and I'll 
                   get back to you as soon as possible.
                 </p>
@@ -75,10 +75,10 @@ const Contact = () => {
                     <div>
                       <h4 className="text-sm font-medium mb-1">Phone</h4>
                       <a 
-                        href="tel:+14074126865" 
+                        href="tel:+12074512355" 
                         className="text-muted-foreground hover:text-white transition-colors duration-200"
                       >
-                        +1 (407) 412-6865
+                        +1 (207) 451-2355
                       </a>
                     </div>
                   </div>

@@ -14,7 +14,7 @@ const Footer = () => {
               George <span className="gradient-text">Puthean</span>
             </Link>
             <p className="text-muted-foreground mt-2 text-sm">
-              Data Analyst & Business Intelligence Specialist
+              Product Analyst & Data Specialist
             </p>
           </div>
           
@@ -29,10 +29,10 @@ const Footer = () => {
                 georgeputhean@yahoo.com
               </a>
               <a 
-                href="tel:+14074126865" 
+                href="tel:+12074512355" 
                 className="text-muted-foreground text-sm hover:text-white transition-colors duration-200"
               >
-                +1 (407) 412-6865
+                +1 (207) 451-2355
               </a>
             </div>
             

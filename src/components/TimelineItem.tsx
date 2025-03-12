@@ -49,12 +49,17 @@ const TimelineItem = ({
             </ul>
           )}
         </div>
+        
+        {/* Timeline dot with period tooltip */}
         <div
           className={cn(
-            "absolute top-4 md:top-6 w-3 h-3 rounded-full bg-portfolio-purple z-10",
-            isLeft ? "right-0 md:left-auto md:right-[-6.5px]" : "left-4 md:left-1/2 md:-translate-x-1/2"
+            "absolute top-4 md:top-6 w-5 h-5 rounded-full bg-portfolio-purple z-10 flex items-center justify-center",
+            isLeft ? "right-0 md:left-auto md:right-[-10px]" : "left-4 md:left-1/2 md:-translate-x-1/2"
           )}
-        />
+          title={period}
+        >
+          <div className="w-3 h-3 rounded-full bg-white"></div>
+        </div>
       </div>
     </div>
   );

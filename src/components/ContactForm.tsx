@@ -1,8 +1,8 @@
-
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { Button } from "@/components/ui/button";
 import { Send } from "lucide-react";
+import emailjs from "emailjs-com";
 
 const ContactForm = () => {
   const { toast } = useToast();
@@ -25,26 +25,21 @@ const ContactForm = () => {
     setIsSubmitting(true);
     
     try {
-      // Send email using EmailJS
-      const response = await fetch("https://api.emailjs.com/api/v1.0/email/send", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          service_id: "service_s8pz9vj",
-          template_id: "template_1u4v2wn",
-          user_id: "Z3KR7x2jXJXTYxT1s",
-          template_params: {
-            from_name: formData.name,
-            reply_to: formData.email,
-            message: formData.message,
-            to_email: "georgeputhean@yahoo.com",
-          },
-        }),
-      });
+      const templateParams = {
+        from_name: formData.name,
+        reply_to: formData.email,
+        message: formData.message,
+        to_email: "georgeputhean@yahoo.com",
+      };
       
-      if (response.ok) {
+      const response = await emailjs.send(
+        "service_s8pz9vj",
+        "template_1u4v2wn",
+        templateParams,
+        "Z3KR7x2jXJXTYxT1s"
+      );
+      
+      if (response.status === 200) {
         toast({
           title: "Message sent successfully!",
           description: "Thank you for reaching out. I'll get back to you soon.",

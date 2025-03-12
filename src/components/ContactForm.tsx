@@ -1,8 +1,9 @@
+
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { Button } from "@/components/ui/button";
 import { Send } from "lucide-react";
-import emailjs from "emailjs-com";
+import { supabase } from "@/integrations/supabase/client";
 
 const ContactForm = () => {
   const { toast } = useToast();
@@ -25,34 +26,33 @@ const ContactForm = () => {
     setIsSubmitting(true);
     
     try {
-      const templateParams = {
-        from_name: formData.name,
-        reply_to: formData.email,
-        message: formData.message,
-        to_email: "georgeputhean@yahoo.com",
-      };
+      // Insert the form data into the contactForm table in Supabase
+      const { error } = await supabase
+        .from('contactForm')
+        .insert([
+          {
+            name: formData.name,
+            email: formData.email,
+            message: formData.message
+          }
+        ]);
       
-      const response = await emailjs.send(
-        "service_s8pz9vj",
-        "template_1u4v2wn",
-        templateParams,
-        "Z3KR7x2jXJXTYxT1s"
-      );
-      
-      if (response.status === 200) {
-        toast({
-          title: "Message sent successfully!",
-          description: "Thank you for reaching out. I'll get back to you soon.",
-        });
-        setFormData({ name: "", email: "", message: "" });
-      } else {
-        throw new Error("Failed to send message");
+      if (error) {
+        throw error;
       }
+      
+      toast({
+        title: "Message sent successfully!",
+        description: "Thank you for reaching out. I'll get back to you soon.",
+      });
+      
+      // Clear the form after successful submission
+      setFormData({ name: "", email: "", message: "" });
     } catch (error) {
-      console.error("Error sending email:", error);
+      console.error("Error saving contact form:", error);
       toast({
         title: "Failed to send message",
-        description: "There was an error sending your message. Please try again later.",
+        description: "There was an error saving your message. Please try again later.",
         variant: "destructive",
       });
     } finally {

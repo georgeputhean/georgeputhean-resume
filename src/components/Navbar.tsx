@@ -48,6 +48,22 @@ const Navbar = () => {
           user_agent: navigator.userAgent
         }]);
       
+      // Send email notification
+      try {
+        await supabase.functions.invoke('send-notification', {
+          body: {
+            type: 'resume_download',
+            data: {
+              user_agent: navigator.userAgent
+            }
+          }
+        });
+        console.log('Resume download notification sent successfully');
+      } catch (emailError) {
+        console.error('Failed to send resume download notification:', emailError);
+        // Continue even if email notification fails
+      }
+      
       // Open the resume in a new tab
       window.open(resumeUrl, "_blank", "noopener,noreferrer");
     } catch (error) {

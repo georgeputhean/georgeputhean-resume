@@ -42,6 +42,24 @@ const ContactForm = () => {
         throw error;
       }
       
+      // Send email notification
+      try {
+        await supabase.functions.invoke('send-notification', {
+          body: {
+            type: 'contact_form',
+            data: {
+              name: formData.name,
+              email: formData.email,
+              message: formData.message
+            }
+          }
+        });
+        console.log('Email notification sent successfully');
+      } catch (emailError) {
+        console.error('Failed to send email notification:', emailError);
+        // Don't throw error here, we still want to show success for the form submission
+      }
+      
       toast({
         title: "Message sent successfully!",
         description: "Thank you for reaching out. I'll get back to you soon.",

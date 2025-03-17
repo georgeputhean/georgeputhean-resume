@@ -27,6 +27,7 @@ const ContactForm = () => {
     
     try {
       // Insert the form data into the contactForm table in Supabase
+      // created_at timestamp will be automatically populated by the default value
       const { error } = await supabase
         .from("contactForm")
         .insert([

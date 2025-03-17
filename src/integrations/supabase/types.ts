@@ -11,22 +11,46 @@ export type Database = {
     Tables: {
       contactForm: {
         Row: {
+          created_at: string | null
           email: string | null
           id: number
           message: string | null
           name: string | null
         }
         Insert: {
+          created_at?: string | null
           email?: string | null
           id?: number
           message?: string | null
           name?: string | null
         }
         Update: {
+          created_at?: string | null
           email?: string | null
           id?: number
           message?: string | null
           name?: string | null
+        }
+        Relationships: []
+      }
+      resume_downloads: {
+        Row: {
+          created_at: string | null
+          id: number
+          ip_address: string | null
+          user_agent: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          id?: number
+          ip_address?: string | null
+          user_agent?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          id?: number
+          ip_address?: string | null
+          user_agent?: string | null
         }
         Relationships: []
       }

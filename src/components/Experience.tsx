@@ -8,7 +8,7 @@ const experiences = [
   {
     title: "Data Analyst/Business Analyst",
     organization: "Xsunt Corporation",
-    location: "Newtown, PA, United States",
+    location: "Philadelphia, PA, United States",
     period: "Feb 2023 - Present",
     details: [
       "Led 3 critical initiatives to enhance reporting and knowledge base capabilities, decreasing user efficiency by 50 percent.",

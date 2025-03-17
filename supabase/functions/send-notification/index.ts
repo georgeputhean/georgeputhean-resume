@@ -55,14 +55,17 @@ const handler = async (req: Request): Promise<Response> => {
       throw new Error("Invalid notification type");
     }
 
+    console.log("Preparing to send email with subject:", emailSubject);
+    console.log("Using RESEND_API_KEY:", Deno.env.get("RESEND_API_KEY") ? "API key exists" : "API key missing");
+    
     const emailResponse = await resend.emails.send({
       from: "George Portfolio <onboarding@resend.dev>",
-      to: ["georgeputhean@yahoo.com"], // Replace with your email
+      to: ["georgeputhean@yahoo.com"], // Your email address
       subject: emailSubject,
       html: emailHtml,
     });
 
-    console.log("Email sent successfully:", emailResponse);
+    console.log("Email sent successfully:", JSON.stringify(emailResponse));
 
     return new Response(JSON.stringify(emailResponse), {
       status: 200,

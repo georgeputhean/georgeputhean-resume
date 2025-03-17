@@ -90,7 +90,7 @@ const Contact = () => {
                     <div>
                       <h4 className="text-sm font-medium mb-1">Location</h4>
                       <p className="text-muted-foreground">
-                        Newtown, PA, United States
+                        Philadelphia, PA, United States
                       </p>
                     </div>
                   </div>

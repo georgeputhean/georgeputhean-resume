@@ -60,7 +60,7 @@ const handler = async (req: Request): Promise<Response> => {
     
     const emailResponse = await resend.emails.send({
       from: "George Portfolio <onboarding@resend.dev>",
-      to: ["georgeputhean@yahoo.com"], // Your email address
+      to: ["georgepjohnson007@gmail.com"], // Updated email address
       subject: emailSubject,
       html: emailHtml,
     });

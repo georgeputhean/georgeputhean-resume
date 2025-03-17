@@ -11,21 +11,18 @@ export type Database = {
     Tables: {
       contactForm: {
         Row: {
-          created_at: string
           email: string | null
           id: number
           message: string | null
           name: string | null
         }
         Insert: {
-          created_at?: string
           email?: string | null
           id?: number
           message?: string | null
           name?: string | null
         }
         Update: {
-          created_at?: string
           email?: string | null
           id?: number
           message?: string | null

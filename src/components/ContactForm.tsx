@@ -28,7 +28,7 @@ const ContactForm = () => {
     try {
       // Insert the form data into the contactForm table in Supabase
       const { error } = await supabase
-        .from('contactForm')
+        .from("contactForm")
         .insert([
           {
             name: formData.name,
